@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_700"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp">
+
+        <ImageView
+            android:id="@+id/tileFirstOne"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@color/tileShirt"
+            tools:layout_editor_absoluteX="67dp" />
+
+        <ImageView
+            android:id="@+id/tileFirstTwo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_margin="10dp"
+
+            android:background="@color/tileShirt" />
+
+        <ImageView
+            android:id="@+id/tileFirstThree"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_margin="10dp"
+
+            android:background="@color/tileShirt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:id="@+id/tileSecondOne"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@color/tileShirt"
+            tools:layout_editor_absoluteX="67dp" />
+
+        <ImageView
+            android:id="@+id/tileSecondTwo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@color/tileShirt" />
+
+        <ImageView
+            android:id="@+id/tileSecondThree"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_margin="10dp"
+
+            android:background="@color/tileShirt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:id="@+id/tileThirdOne"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@color/tileShirt"
+            tools:layout_editor_absoluteX="67dp" />
+
+        <ImageView
+            android:id="@+id/tileThirdTwo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@color/tileShirt" />
+
+        <ImageView
+            android:id="@+id/tilethirdThree"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_margin="10dp"
+
+            android:background="@color/tileShirt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:id="@+id/tileFourthOne"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@color/tileShirt"
+            tools:layout_editor_absoluteX="67dp" />
+
+        <ImageView
+            android:id="@+id/tileFourthTwo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_margin="10dp"
+
+            android:background="@color/tileShirt" />
+
+        <ImageView
+            android:id="@+id/tileFourthThree"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_margin="10dp"
+
+            android:background="@color/tileShirt" />
+    </LinearLayout>
+
+</LinearLayout>
