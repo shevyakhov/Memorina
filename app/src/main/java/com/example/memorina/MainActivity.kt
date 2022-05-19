@@ -3,91 +3,66 @@ package com.example.memorina
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.memorina.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var clicked = ArrayList<ImageView>()
+    private var tileCount = 12
+    private var clicked = ArrayList<Tile>()
     private var count = 0
     private lateinit var binding: ActivityMainBinding
-    var colors = ArrayList<Int>()
-    var tiles = ArrayList<Tile>()
-
+    private var colors = ArrayList<Int>()
+    private var tiles = ArrayList<Tile>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initArray()
         setListeners()
     }
-
-
-    fun setListeners() {
-
-        with(binding) {
-            tileFirstOne.setOnClickListener {
-                listener(tiles[0].imageView, tiles[0].color)
-            }
-            tileFirstTwo.setOnClickListener {
-                listener(tiles[1].imageView, tiles[1].color)
-            }
-            tileFirstThree.setOnClickListener {
-                listener(tiles[2].imageView, tiles[2].color)
-            }
-            tileSecondOne.setOnClickListener {
-                listener(tiles[3].imageView, tiles[3].color)
-            }
-            tileSecondTwo.setOnClickListener {
-                listener(tiles[4].imageView, tiles[4].color)
-            }
-            tileSecondThree.setOnClickListener {
-                listener(tiles[5].imageView, tiles[5].color)
-            }
-            tileThirdOne.setOnClickListener {
-                listener(tiles[6].imageView, tiles[6].color)
-            }
-            tileThirdTwo.setOnClickListener {
-                listener(tiles[7].imageView, tiles[7].color)
-            }
-            tilethirdThree.setOnClickListener {
-                listener(tiles[8].imageView, tiles[8].color)
-            }
-            tileFourthOne.setOnClickListener {
-                listener(tiles[9].imageView, tiles[9].color)
-            }
-            tileFourthTwo.setOnClickListener {
-                listener(tiles[10].imageView, tiles[10].color)
-            }
-            tileFourthThree.setOnClickListener {
-                listener(tiles[11].imageView, tiles[11].color)
+    private fun setListeners() {
+        for (index in tiles.indices) {
+            tiles[index].imageView.setOnClickListener {
+                listener(tiles[index])
             }
         }
-
-
     }
-
-    // FIXME: криво работает, не в том порядке
-    private fun listener(imageView: ImageView, color: Int) {
-        Handler(Looper.getMainLooper()).postDelayed({
-            imageView.setImageResource(color)
-            clicked.add(imageView)
-            count++
-            check()
-        }, 700)
+    private fun listener(tile: Tile) {
+        if (count < 2) {
+            if (tile !in clicked) {
+                count++
+                Handler(Looper.getMainLooper()).postDelayed({
+                    tile.imageView.setImageResource(tile.color)
+                }, 350)
+                clicked.add(tile)
+                check()
+            }
+        }
     }
-
     private fun check() {
-        if (count == 2){
-            hideTrueColor(clicked[0],clicked[1])
+        if (count == 2) {
+            if (clicked[0].color == clicked[1].color) {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    clicked[0].imageView.visibility = View.GONE
+                    clicked[1].imageView.visibility = View.GONE
+                    clicked.clear()
+                    count = 0
+                    tileCount -= 2
+                    if (tileCount == 0){
+                        Toast.makeText(this, "Вы победили!😎", Toast.LENGTH_SHORT).show()
+                    }
+                }, 700)
+            } else
+                hideTrueColor(clicked[0].imageView, clicked[1].imageView)
         }
     }
 
-    private fun hideTrueColor(imageView1: ImageView,imageView2: ImageView) {
+    private fun hideTrueColor(imageView1: ImageView, imageView2: ImageView) {
         Handler(Looper.getMainLooper()).postDelayed({
             imageView1.setImageResource(shirtColor)
             imageView2.setImageResource(shirtColor)
@@ -96,20 +71,17 @@ class MainActivity : AppCompatActivity() {
         }, 1000)
     }
     private fun initArray() {
-
-
         for (i in 1..2) {
             with(colors) {
-                add(redColor)
-                add(blueColor)
-                add(yellowColor)
-                add(purpleColor)
-                add(greenColor)
-                add(orangeColor)
+                add(R.drawable.one)
+                add(R.drawable.two)
+                add(R.drawable.three)
+                add(R.drawable.four)
+                add(R.drawable.five)
+                add(R.drawable.six)
             }
         }
         colors.shuffle()
-
         tiles.add(Tile(binding.tileFirstOne, colors[0]))
         tiles.add(Tile(binding.tileFirstTwo, colors[1]))
         tiles.add(Tile(binding.tileFirstThree, colors[2]))
@@ -122,7 +94,5 @@ class MainActivity : AppCompatActivity() {
         tiles.add(Tile(binding.tileFourthOne, colors[9]))
         tiles.add(Tile(binding.tileFourthTwo, colors[10]))
         tiles.add(Tile(binding.tileFourthThree, colors[11]))
-
-
     }
 }
